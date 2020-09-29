@@ -10,25 +10,11 @@ int main() {
     ll date , hour , minute;
     cin >> date >> hour >> minute;
 
-    if(date == 11){
-        ll ans = 0;
-        if(hour != 11) {
-            ans += 49;
-            ans += minute;
-            ans += (hour - 12)*60;
-        }
-        else{
-            ans += minute-11;
-        }
+    ll time_till_11_11_11 = 16511;
+    ll time_till_date_hour_minute = date*24*60 + hour*60 + minute;
 
-        cout << ans;
-    }
-    else{
-        ll oans = 49+720;
-        oans += (day-12)*1440;
-        oans += hour*60 + minute;
-        cout << oans;
-    }
+    if(time_till_date_hour_minute < time_till_11_11_11) cout << "-1";
+    else cout << time_till_date_hour_minute - time_till_11_11_11;
 
     return 0;
 }
