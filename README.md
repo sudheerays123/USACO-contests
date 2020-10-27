@@ -1,2 +1,2 @@
 # USACO-contests
-USACO problem solutions year by year
+ALL USACO SOLUTIONS YEAR BY YEAR
