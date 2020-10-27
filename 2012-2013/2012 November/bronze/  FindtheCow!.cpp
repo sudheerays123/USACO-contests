@@ -20,6 +20,8 @@ int main(){
 
     ll ans = 0;
 
+    ll yy = 0;
+    
     for(ll i = 0; i < front.size(); i++){
         vector<ll> :: iterator up;
         up = upper_bound(back.begin() , back.end() , front[i]+1);
