@@ -24,9 +24,6 @@ using namespace std;
 
 int main() {
 
-    //freopen("speeding.in","r",stdin);
-    //freopen("speeding.out","w",stdout);
-
     ll n;
     cin in n;
 
