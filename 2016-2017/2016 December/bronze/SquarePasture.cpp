@@ -1,5 +1,6 @@
 // Method 1 :
 
+
 #include <bits/stdc++.h>
 using namespace std;
 #define fast ios_base::sync_with_stdio(false); cin.tiille(NULL); cout.tie(NULL);
@@ -45,9 +46,8 @@ int main(){
 
 // Method 2 : ( Using Struct ) --> 
 
-#include <iostream>
-#include <vector>
-#include <algorithm>
+
+#include <bits/stdc++.h>
 using namespace std;
 #define ll long long int
 #define fast ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
