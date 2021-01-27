@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include<unordered_set>
+#include <algorithm>
 using namespace std;
 #define ll long long int
 #define fast ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -18,25 +18,26 @@ using namespace std;
 #define spacef << " "
 #define fo(i,a,b) for(ll i = a; i <= b; i++)
 #define nextline out "\n"
-#define print(x) for(auto i : x ) cout out i spacef
+#define print(x) for(auto i : x ) cout out i.first space i.second nextline
 #define mmax(x,i) x = max(x,i)
 #define mmin(x,i) x = min(x,i)
 
-int main(){
+int main() {
 
     freopen("paint.in","r",stdin);
     freopen("paint.out","w",stdout);
-
+    
     ll a,b,c,d;
     cin in a in b in c in d;
 
-    if(b <= c || d <= a) cout out b-a+d-c;
+    ll ans = 0;
 
-    else if(a <= c && c <= b && b <= d) cout out d-a;
-    else if(a <= c && d <= b) cout out b-a;
+    ans += b-a;
+    ans += d-c;
 
-    else if(c <= a && a <= d && d <= b) cout out b-c;
-    else if(c <= a && b <= d) cout out d-c;
+    ans -= max(0ll,min(b,d)-max(a,c));
+
+    cout out ans;
 
     return 0;
 }
