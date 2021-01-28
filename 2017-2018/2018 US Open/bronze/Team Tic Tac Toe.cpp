@@ -22,6 +22,30 @@ using namespace std;
 #define mmax(x,i) x = max(x,i)
 #define mmin(x,i) x = min(x,i)
 
+set<char> individual;
+set<pair<char,char>> teampair;
+
+void findans(char x , char y , char z){
+
+    set<char> s;
+
+    s.insert(x);
+    s.insert(y);
+    s.insert(z);
+
+    if(s.size() == 1) individual.insert(x);
+    else if(s.size() == 2) {
+        if(x == y) {
+            if(x < z) teampair.insert(mp(x,z));
+            else teampair.insert(mp(z,x));
+        }
+        else {
+            if(x < y) teampair.insert(mp(x,y));
+            else teampair.insert(mp(y,x));
+        }
+    }
+}
+
 int main() {
 
     freopen("tttt.in","r",stdin);
@@ -35,114 +59,22 @@ int main() {
         fo(j,0,2) ttt[i][j] = s[j];
     }
 
-
-    set<char> s;
-    set<char> individual;
-    set<pair<char,char>> teampair;
-
     // 1st column
-
-    s.insert(ttt[0][0]);
-    s.insert(ttt[1][0]);
-    s.insert(ttt[2][0]);
-
-    if(s.size() == 1) individual.insert(ttt[0][0]);
-    else if(s.size() == 2) {
-        if(ttt[0][0] == ttt[1][0]) teampair.insert(mp(ttt[0][0],ttt[2][0]));
-        else teampair.insert(mp(ttt[0][0],ttt[1][0]));
-    }
-    s.clear();
-
+    findans(ttt[0][0],ttt[1][0],ttt[2][0]);
     // 2nd column
-
-    s.insert(ttt[0][1]);
-    s.insert(ttt[1][1]);
-    s.insert(ttt[2][1]);
-
-    if(s.size() == 1) individual.insert(ttt[0][1]);
-    else if(s.size() == 2) {
-        if(ttt[0][1] == ttt[1][1]) teampair.insert(mp(ttt[0][1],ttt[2][1]));
-        else teampair.insert(mp(ttt[0][1],ttt[1][1]));
-    }
-    s.clear();
-
+    findans(ttt[0][1],ttt[1][1],ttt[2][1]);
     // 3rd column
-
-    s.insert(ttt[0][2]);
-    s.insert(ttt[1][2]);
-    s.insert(ttt[2][2]);
-
-    if(s.size() == 1) individual.insert(ttt[0][2]);
-    else if(s.size() == 2) {
-        if(ttt[0][2] == ttt[1][2]) teampair.insert(mp(ttt[0][2],ttt[2][2]));
-        else teampair.insert(mp(ttt[0][2],ttt[1][2]));
-    }
-    s.clear();
-
+    findans(ttt[0][2],ttt[1][2],ttt[2][2]);
     // 1st row
-
-    s.insert(ttt[0][0]);
-    s.insert(ttt[0][1]);
-    s.insert(ttt[0][2]);
-
-    if(s.size() == 1) individual.insert(ttt[0][0]);
-    else if(s.size() == 2) {
-        if(ttt[0][0] == ttt[0][1]) teampair.insert(mp(ttt[0][0],ttt[0][2]));
-        else teampair.insert(mp(ttt[0][0],ttt[0][1]));
-    }
-    s.clear();
-
+    findans(ttt[0][0],ttt[0][1],ttt[0][2]);
     // 2nd row
-
-    s.insert(ttt[1][0]);
-    s.insert(ttt[1][1]);
-    s.insert(ttt[1][2]);
-
-    if(s.size() == 1) individual.insert(ttt[1][0]);
-    else if(s.size() == 2) {
-        if(ttt[1][0] == ttt[1][1]) teampair.insert(mp(ttt[1][0],ttt[1][2]));
-        else teampair.insert(mp(ttt[1][0],ttt[1][1]));
-    }
-    s.clear();
-
+    findans(ttt[1][0],ttt[1][1],ttt[1][2]);
     // 3rd row
-
-    s.insert(ttt[2][0]);
-    s.insert(ttt[2][1]);
-    s.insert(ttt[2][2]);
-
-    if(s.size() == 1) individual.insert(ttt[2][0]);
-    else if(s.size() == 2) {
-        if(ttt[2][0] == ttt[2][1]) teampair.insert(mp(ttt[2][0],ttt[2][2]));
-        else teampair.insert(mp(ttt[2][0],ttt[2][1]));
-    }
-    s.clear();
-
+    findans(ttt[2][0],ttt[2][1],ttt[2][2]);
     // 1st Diagonal :
-
-    s.insert(ttt[0][0]);
-    s.insert(ttt[1][1]);
-    s.insert(ttt[2][2]);
-
-    if(s.size() == 1) individual.insert(ttt[0][0]);
-    else if(s.size() == 2) {
-        if(ttt[0][0] == ttt[1][1]) teampair.insert(mp(ttt[0][0],ttt[2][2]));
-        else teampair.insert(mp(ttt[0][0],ttt[1][1]));
-    }
-    s.clear();
-
+    findans(ttt[0][0],ttt[1][1],ttt[2][2]);
     // 2nd Diagonal :
-
-    s.insert(ttt[0][2]);
-    s.insert(ttt[1][1]);
-    s.insert(ttt[2][0]);
-
-    if(s.size() == 1) individual.insert(ttt[0][2]);
-    else if(s.size() == 2) {
-        if(ttt[0][2] == ttt[1][1]) teampair.insert(mp(ttt[0][2],ttt[2][0]));
-        else teampair.insert(mp(ttt[0][2],ttt[1][1]));
-    }
-    s.clear();
+    findans(ttt[0][2],ttt[1][1],ttt[2][0]);
 
     cout out individual.size() nextline out teampair.size();
 
