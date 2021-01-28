@@ -35,9 +35,9 @@ int main() {
         fo(j,0,2) ttt[i][j] = s[j];
     }
 
-    ll single = 0 ;
 
     set<char> s;
+    set<char> individual;
     set<pair<char,char>> teampair;
 
     // 1st column
@@ -46,7 +46,7 @@ int main() {
     s.insert(ttt[1][0]);
     s.insert(ttt[2][0]);
 
-    if(s.size() == 1) single++;
+    if(s.size() == 1) individual.insert(ttt[0][0]);
     else if(s.size() == 2) {
         if(ttt[0][0] == ttt[1][0]) teampair.insert(mp(ttt[0][0],ttt[2][0]));
         else teampair.insert(mp(ttt[0][0],ttt[1][0]));
@@ -59,7 +59,7 @@ int main() {
     s.insert(ttt[1][1]);
     s.insert(ttt[2][1]);
 
-    if(s.size() == 1) single++;
+    if(s.size() == 1) individual.insert(ttt[0][1]);
     else if(s.size() == 2) {
         if(ttt[0][1] == ttt[1][1]) teampair.insert(mp(ttt[0][1],ttt[2][1]));
         else teampair.insert(mp(ttt[0][1],ttt[1][1]));
@@ -72,7 +72,7 @@ int main() {
     s.insert(ttt[1][2]);
     s.insert(ttt[2][2]);
 
-    if(s.size() == 1) single++;
+    if(s.size() == 1) individual.insert(ttt[0][2]);
     else if(s.size() == 2) {
         if(ttt[0][2] == ttt[1][2]) teampair.insert(mp(ttt[0][2],ttt[2][2]));
         else teampair.insert(mp(ttt[0][2],ttt[1][2]));
@@ -85,7 +85,7 @@ int main() {
     s.insert(ttt[0][1]);
     s.insert(ttt[0][2]);
 
-    if(s.size() == 1) single++;
+    if(s.size() == 1) individual.insert(ttt[0][0]);
     else if(s.size() == 2) {
         if(ttt[0][0] == ttt[0][1]) teampair.insert(mp(ttt[0][0],ttt[0][2]));
         else teampair.insert(mp(ttt[0][0],ttt[0][1]));
@@ -98,7 +98,7 @@ int main() {
     s.insert(ttt[1][1]);
     s.insert(ttt[1][2]);
 
-    if(s.size() == 1) single++;
+    if(s.size() == 1) individual.insert(ttt[1][0]);
     else if(s.size() == 2) {
         if(ttt[1][0] == ttt[1][1]) teampair.insert(mp(ttt[1][0],ttt[1][2]));
         else teampair.insert(mp(ttt[1][0],ttt[1][1]));
@@ -111,7 +111,7 @@ int main() {
     s.insert(ttt[2][1]);
     s.insert(ttt[2][2]);
 
-    if(s.size() == 1) single++;
+    if(s.size() == 1) individual.insert(ttt[2][0]);
     else if(s.size() == 2) {
         if(ttt[2][0] == ttt[2][1]) teampair.insert(mp(ttt[2][0],ttt[2][2]));
         else teampair.insert(mp(ttt[2][0],ttt[2][1]));
@@ -124,7 +124,7 @@ int main() {
     s.insert(ttt[1][1]);
     s.insert(ttt[2][2]);
 
-    if(s.size() == 1) single++;
+    if(s.size() == 1) individual.insert(ttt[0][0]);
     else if(s.size() == 2) {
         if(ttt[0][0] == ttt[1][1]) teampair.insert(mp(ttt[0][0],ttt[2][2]));
         else teampair.insert(mp(ttt[0][0],ttt[1][1]));
@@ -137,14 +137,14 @@ int main() {
     s.insert(ttt[1][1]);
     s.insert(ttt[2][0]);
 
-    if(s.size() == 1) single++;
+    if(s.size() == 1) individual.insert(ttt[0][2]);
     else if(s.size() == 2) {
         if(ttt[0][2] == ttt[1][1]) teampair.insert(mp(ttt[0][2],ttt[2][0]));
         else teampair.insert(mp(ttt[0][2],ttt[1][1]));
     }
     s.clear();
 
-    cout out single nextline out teampair.size();
+    cout out individual.size() nextline out teampair.size();
 
     return 0;
 }
