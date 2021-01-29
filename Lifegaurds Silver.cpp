@@ -24,8 +24,8 @@ typedef long long int ll;
 
 int main() {
 
-    freopen("lifeguards.in","r",stdin);
-    freopen("lifeguards.out","w",stdout);
+    //freopen("lifeguards.in","r",stdin);
+    //freopen("lifeguards.out","w",stdout);
 
     ll n;
     cin in n;
@@ -41,20 +41,23 @@ int main() {
 
     fo(i,1,n-1) shift[i-1][0] = min(shift[i-1][0],shift[i][1]);
 
-    ll sum = 0 , minn = INF , removed;
+    ll sum = 0 , ans = -INF;
 
-    fo(i,0,n-1) {
-        if(shift[i][0]-shift[i][1] <= minn){
-            minn = shift[i][0]-shift[i][1];
-            removed = i;
+    fo(i,0,n-1)  sum += shift[i][0]-shift[i][1];
+
+    fo(i,0,n-1){
+
+        ll after = sum;
+        after -= shift[i][0]-shift[i][1];
+
+        if(i != 0){
+            after += shift[i-1][2] - shift[i-1][0];
         }
-        sum += shift[i][0]-shift[i][1];
+
+        mmax(ans,after);
     }
 
-    sum -= minn;
-    if(removed != 0 && shift[removed-1][2] > shift[removed-1][0]) sum += (shift[removed-1][2] - shift[removed-1][0]);
-
-    cout out sum;
+    cout out ans;
 
     return 0;
 }
