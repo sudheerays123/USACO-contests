@@ -74,23 +74,20 @@ int main() {
             }
             if(a[i] == 'H'){
                 dp[i][j][0] = max(dp[i][j-1][0],max(dp[i-1][j][0],max(dp[i-1][j-1][1],dp[i-1][j-1][2])));
-                dp[i][j][2] = max(dp[i][j-1][2],max(dp[i-1][j][2],max(dp[i-1][j-1][0],dp[i-1][j-1][1])));
                 dp[i][j][1] = max(dp[i][j-1][1],max(dp[i-1][j][1],max(dp[i-1][j-1][0]+1,max(dp[i-1][j-1][2]+1,dp[i-1][j][1]+1))));
+                dp[i][j][2] = max(dp[i][j-1][2],max(dp[i-1][j][2],max(dp[i-1][j-1][0],dp[i-1][j-1][1])));
             }
             if(a[i] == 'S'){
                 dp[i][j][0] = max(dp[i][j-1][0],max(dp[i-1][j][0],max(dp[i-1][j-1][1]+1,max(dp[i-1][j-1][2]+1,dp[i-1][j][0]+1))));
-                dp[i][j][2] = max(dp[i][j-1][2],max(dp[i-1][j][2],max(dp[i-1][j-1][0],dp[i-1][j-1][1])));
                 dp[i][j][1] = max(dp[i][j-1][1],max(dp[i-1][j][1],max(dp[i-1][j-1][0],dp[i-1][j-1][2])));
+                dp[i][j][2] = max(dp[i][j-1][2],max(dp[i-1][j][2],max(dp[i-1][j-1][0],dp[i-1][j-1][1])));
             }
         }
     }
 
     // answer :
 
-    ll ans = -INF;
-    mmax(ans,max(dp[n][k][0],max(dp[n][k][1],dp[n][k][2])));
-
-    cout out ans;
+    cout out max(dp[n][k][0],max(dp[n][k][1],dp[n][k][2]));
 
     return 0;
 }
