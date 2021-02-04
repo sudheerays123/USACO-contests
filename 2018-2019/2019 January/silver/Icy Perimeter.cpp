@@ -1,12 +1,16 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <queue>
 using namespace std;
-typedef int ll;
+#define fast ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+typedef long long int ll;
 #define tc ll test;cin >> test;while(test--)
 #define vi vector<ll>
 #define pb push_back
 #define mp make_pair
-#define INF 0x3f3f3f
-#define MOD 1e9 + 7
+#define INF 0x3f3f3f3f3f
+#define MOD 1000000007
 #define ff first
 #define ss second
 #define in >>
@@ -14,78 +18,81 @@ typedef int ll;
 #define space << " " <<
 #define spacef << " "
 #define fo(i,a,b) for(ll i = a; i <= b; i++)
-#define foo(i,a,b,d) for(ll i = a; i <= b; i+=d)
 #define nextline out "\n"
-#define print(x) for(auto i : x ) cout out i spacef
+#define print(x) for(auto i : x ) cout out i spacef;
 #define mmax(x,i) x = max(x,i)
 #define mmin(x,i) x = min(x,i)
 
-ll n;
-ll area = 0  , perimeter = 0;
-map<pair<ll, ll>, ll> grid;
-map<pair<ll, ll>, bool> visited;
+vector<vector<char>> grid(1005,vector<char>(1005,'.'));
+vector<vector<bool>> visited(1005,vector<bool>(1005));
+ll area , perimeter;
 
-void floodfill(ll x, ll y) {
+void floodFill(ll x , ll y){
 
-	if (visited[mp(x, y)] == true) return;
-	visited[mp(x, y)] = true;
-	area++;
+    if(visited[x][y] == true || grid[x][y] == '.') return;
+    visited[x][y] = true;
 
-	ll around = 0;
-	if (x != 0 && grid.find(mp(x - 1, y)) != grid.end()) {
-		around++;
-		floodfill(x - 1, y);
-	}
-	if (y != 0 && grid.find(mp(x, y - 1)) != grid.end()) {
-		around++;
-		floodfill(x, y - 1);
-	}
-	if (x != n - 1 && grid.find(mp(x + 1, y)) != grid.end()) {
-		around++;
-		floodfill(x + 1, y);
-	}
-	if (y != n - 1 && grid.find(mp(x, y + 1)) != grid.end()) {
-		around++;
-		floodfill(x, y + 1);
-	}
+    area++;
+    perimeter += 4;
 
-	perimeter += 4 - around;
+    if(grid[x-1][y] == '#'){
+        perimeter--;
+        if(visited[x-1][y] == false) floodFill(x-1,y);
+    }
+
+    if(grid[x+1][y] == '#'){
+        perimeter--;
+        if(visited[x+1][y] == false) floodFill(x+1,y);
+    }
+
+    if(grid[x][y-1] == '#'){
+        perimeter--;
+        if(visited[x][y-1] == false) floodFill(x,y-1);
+    }
+
+    if(grid[x][y+1] == '#'){
+        perimeter--;
+        if(visited[x][y+1] == false) floodFill(x,y+1);
+    }
 
 }
 
 int main() {
 
-	freopen("perimeter.in", "r", stdin);
-	freopen("perimeter.out", "w", stdout);
+    freopen("perimeter.in","r",stdin);
+    freopen("perimeter.out","w",stdout);
 
-	cin in n;
+    ll n;
+    cin in n;
 
-	fo(i, 0, n - 1) {
-		string s;
-		cin in s;
-		fo(j, 0, n - 1) {
-			char x = s[j];
-			if (x == '#') grid[mp(i, j)] = 1;
-			visited[mp(i, j)] = false;
-		}
-	}
+    fo(i,1,n){
+        string s;
+        cin in s;
+        fo(j,1,n){
+            grid[i][j] = s[j-1];
+        }
+    }
 
-	ll ansarea = -INF, ansperimeter = -INF;
+    ll ansarea = -INF , ansperimeter;
 
-	for (auto i : grid) {
-		area = 0;
-		perimeter = 0;	
+    fo(i,1,n){
+        fo(j,1,n){
+            if(visited[i][j] == true || grid[i][j] == '.') continue;
 
-		floodfill(i.first.first, i.first.second);
+            area = 0 , perimeter = 0;
+            floodFill(i,j);
 
-		if (area > ansarea) {
-			ansarea = area;
-			ansperimeter = perimeter;
-		}
-		else if (area == ansarea && ansperimeter > perimeter) ansperimeter = perimeter;
-	}
+            if(area > ansarea){
+                ansarea = area;
+                ansperimeter = perimeter;
+            }
+            else if(area == ansarea){
+                mmin(ansperimeter,perimeter);
+            }
+        }
+    }
 
-	cout out ansarea space ansperimeter nextline;
+    cout out ansarea space ansperimeter;
 
-	return 0;
+    return 0;
 }
