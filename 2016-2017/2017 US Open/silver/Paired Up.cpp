@@ -47,27 +47,19 @@ int main() {
 
     while(low <= high){
 
-        if(milk[low][1] <= 0) low++;
-        if(milk[high][1] <= 0) high--;
-
-        if(low > high) break;
-
         mmax(mintime,milk[low][0]+milk[high][0]);
 
-        ll mincow = min(milk[low][1],milk[high][1]);
-        
-        milk[low][1] -= mincow;
-        milk[high][1] -= mincow;
-
-        /*
-        
-        if(milk[low][1] > milk[high][1]){
-             milk[low][1] -= milk[high][1];
+        if(milk[low][1] >= milk[high][1]){
+            milk[low][1] -= milk[high][1];
+            milk[high][1] -= milk[high][1];
         }
-        else milk[high][1] -= milk[low][1];
-        
-        */
-        
+        else if(milk[high][1] > milk[low][1]){
+            milk[high][1] -= milk[low][1];
+            milk[low][1] -= milk[low][1];
+        }
+
+        if(milk[low][1] <= 0) low++;
+        if(milk[high][1] <= 0) high--;
     }
 
     cout out mintime;
