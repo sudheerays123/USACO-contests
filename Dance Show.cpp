@@ -1,4 +1,3 @@
-http://www.usaco.org/index.php?page=viewproblem2&cpid=690
 #include <bits/stdc++.h>
 using namespace std;
 #define fast ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -36,8 +35,8 @@ bool isKpossible(ll k){
             timeneeded = q.top();
             q.pop();
         }
-        if(timeneeded > t ) return false;
 
+        if(timeneeded + d[i] > t ) return false;
         q.push(d[i] + timeneeded);
 
     }
@@ -47,8 +46,8 @@ bool isKpossible(ll k){
 
 int main() {
 
-    //freopen("cowdance.in","r",stdin);
-    //freopen("cowdance.out","w",stdout);
+    freopen("cowdance.in","r",stdin);
+    freopen("cowdance.out","w",stdout);
 
     cin in n in t;
 
