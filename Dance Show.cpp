@@ -1,9 +1,5 @@
 http://www.usaco.org/index.php?page=viewproblem2&cpid=690
-
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <queue>
+#include <bits/stdc++.h>
 using namespace std;
 #define fast ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 typedef long long int ll;
@@ -25,24 +21,57 @@ typedef long long int ll;
 #define mmax(x,i) x = max(x,i)
 #define mmin(x,i) x = min(x,i)
 
+ll n,t;
+vi d(100005);
+
 bool isKpossible(ll k){
 
+    ll timeneeded = 0;
+
+    priority_queue<ll,vi,greater<>> q;
+
+    fo(i,1,n){
+
+        if(q.size() == k){
+            timeneeded = q.top();
+            q.pop();
+        }
+        if(timeneeded > t ) return false;
+
+        q.push(d[i] + timeneeded);
+
+    }
+
+    return timeneeded <= t;
 }
 
 int main() {
 
-    ll n,t;
+    //freopen("cowdance.in","r",stdin);
+    //freopen("cowdance.out","w",stdout);
+
     cin in n in t;
 
-    vi d(n+5);
     fo(i,1,n) cin in d[i];
 
     ll low = 1;
     ll high = n;
 
+    ll ans;
+
     while(low <= high){
 
+        ll mid = (low+high)/2;
+
+        if(isKpossible(mid)){
+            ans = mid;
+            high = mid-1;
+        }
+        else low = mid+1;
     }
 
+    cout out ans;
+
     return 0;
+
 }
