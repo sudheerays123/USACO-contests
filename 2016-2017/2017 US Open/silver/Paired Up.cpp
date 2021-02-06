@@ -56,16 +56,18 @@ int main() {
 
         mmax(mintime,milk[low][0]+milk[high][0]);
 
-        //ll mincow = min(milk[low][1],milk[high][1]);
+        ll mincow = min(milk[low][1],milk[high][1]);
         
         milk[low][1] -= mincow;
         milk[high][1] -= mincow;
 
         /*
+        
         if(milk[low][1] > milk[high][1]){
              milk[low][1] -= milk[high][1];
         }
         else milk[high][1] -= milk[low][1];
+        
         */
         
     }
