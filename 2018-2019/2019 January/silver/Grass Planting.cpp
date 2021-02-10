@@ -1,12 +1,15 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
-typedef long long ll;
+#define fast ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+#define ll long long int
 #define tc ll test;cin >> test;while(test--)
 #define vi vector<ll>
 #define pb push_back
 #define mp make_pair
-#define INF 0x3f3f3f
-#define MOD 1e9 + 7
+#define INF 0x3f3f3f3f3f
+#define MOD 13371337
 #define ff first
 #define ss second
 #define in >>
@@ -14,34 +17,38 @@ typedef long long ll;
 #define space << " " <<
 #define spacef << " "
 #define fo(i,a,b) for(ll i = a; i <= b; i++)
-#define foo(i,a,b,d) for(ll i = a; i <= b; i+=d)
 #define nextline out "\n"
 #define print(x) for(auto i : x ) cout out i spacef
 #define mmax(x,i) x = max(x,i)
 #define mmin(x,i) x = min(x,i)
+#define N 200005
 
 int main() {
 
-	freopen("planting.in", "r", stdin);
-	freopen("planting.out", "w", stdout);
+    freopen("planting.in","r",stdin);
+    freopen("planting.out","w",stdout);
 
-	ll n;
-	cin in n;
+    ll n;
+    cin in n;
 
-	vi indegree(n + 5);
+    vi adj[n+5];
 
-	fo(i, 0, n - 2) {
-		ll u, v;
-		cin in u in v;
-		indegree[u]++;
-		indegree[v]++;
-	}
+    fo(i,0,n-2){
+        ll a,b;
+        cin in a in b;
 
-	ll ans = -INF;
+        adj[a].pb(b);
+        adj[b].pb(a);
+    }
 
-	fo(i, 1, n) mmax(ans, indegree[i]+1);
+    ll ans = -INF;
 
-	cout out ans;
+    fo(i,1,n){
+        ll s = adj[i].size()+1;
+        mmax(ans,s);
+    }
 
-	return 0;
+    cout out ans;
+
+    return 0;
 }
