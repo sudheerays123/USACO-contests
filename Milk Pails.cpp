@@ -116,3 +116,6 @@ int main() {
 
     return 0;
 }
+
+http://www.usaco.org/index.php?page=viewproblem2&cpid=620
+https://usaco.guide/solutions/usaco-620?lang=cpp
