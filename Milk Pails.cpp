@@ -94,7 +94,7 @@ int main() {
         dx.pb(pourx);
         dy.pb(j-pourx+i);
 
-        fo(_,0,3){
+        fo(_,0,5){
 
             if(dist[dx[_]][dy[_]] > d){
                 dist[dx[_]][dy[_]] = d;
